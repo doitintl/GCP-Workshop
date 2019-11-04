@@ -19,7 +19,7 @@ Selection of GCP Workshops
 ## GCP Compute Basics
 - Cloud Shell
 - Google Compute command-line tool
-  - Install gcloud 
+  - [Install Google Cloud SDK (gcloud)](https://cloud.google.com/sdk/docs/downloads-versioned-archives) 
 - Create an instance
   - Create instance using the console
   - Create instance using gcloud
