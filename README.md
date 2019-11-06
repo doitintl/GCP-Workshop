@@ -57,7 +57,8 @@ Selection of GCP Workshops
 ## GKE deep dive
 - Interface Capabilities (WebUI, CLI, API)
 - Build and Deployment Capabilities
-- Continuous Integration Capabilities
+- Continuous Integration/Deployment Capabilities
+  - [Continuous Deployment with Cloud Build](https://codelabs.developers.google.com/codelabs/cloud-builder-gke-continuous-deploy/index.html?index=..%2F..index#0)
 - Scaling Applications
 - Troubleshooting Application Deployments
 - Working with Pub/Sub 
