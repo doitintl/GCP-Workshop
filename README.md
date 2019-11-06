@@ -51,7 +51,7 @@ Selection of GCP Workshops
 - GKE Maintenance
 - Real-time Monitoring and Reporting
 - Troubleshooting Tactics
-- Tips and tricks for working with GKE
+- [Tips and tricks for working with GKE](tips.md)
 
 
 
