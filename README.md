@@ -62,4 +62,5 @@ Selection of GCP Workshops
 - Troubleshooting Application Deployments
 - Working with Pub/Sub 
 - Working with Cloud SQL
+  - [Connecting to CloudSQL](https://codelabs.developers.google.com/codelabs/connecting-to-cloud-sql/index.html?index=..%2F..index#0) 
 - Notes about Firestore / Spanner
