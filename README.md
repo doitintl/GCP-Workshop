@@ -50,15 +50,26 @@ Selection of GCP Workshops
 
 ## GKE/K8S foundation
 - Introduction and Environment Setup
+  - Create a cluster
+  - Create a cluster from a template
 - GKE Architecture Review
-  - [Kubernetes Basics](https://codelabs.developers.google.com/codelabs/cloud-orchestrate-with-kubernetes/#0)
-- Resource and Security Management
+  - Zonal / Multizone /Regional
   - Create custom node pools
 - Storage and Networking Concepts
+  - VPC Native
+  - 
 - GKE Maintenance
+  - Upgrades
+  - Repair
+  - Cluster
 - Real-time Monitoring and Reporting
 - Troubleshooting Tactics
+- Resource and Security Management
+
 - [Tips and tricks for working with GKE](tips.md)
+
+- [Kubernetes Basics](https://codelabs.developers.google.com/codelabs/cloud-orchestrate-with-kubernetes/#0)
+
 
 # Day 2
 
