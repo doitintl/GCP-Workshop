@@ -1,19 +1,25 @@
 # GCP-Workshop
 Selection of GCP Workshops
 
+# Day 1 
 
 ## Projects Folders and organizations 
 - Billing Acccount
-- Organization
-- Folders
-- Projects
+  - [Setup Account](https://codelabs.developers.google.com/codelabs/gcp-aws-accounts-and-billing-v2/index.html?index=..%2F..index#0)
+- Organization  
+  - [Resource Hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy#resource-hierarchy-detail)
+  - https://cloud.google.com/resource-manager/docs/creating-managing-organization
+  - Folders
+  - Projects
 
 ## IAM
 
 - User Account / Service Account
-  - Create a Service Account
+  - [Create a Service Account](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
+  - [Create a Service Account Key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys)
 - Roles - Primitive/BuiltIn/Custom
-  - Create a Custom IAM Role and Assing it to an IAM User 
+  - [Understand Roles](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
+  - [Create a Custom IAM Role and Assing it to an IAM User](https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource)
 
 
 ## GCP Compute Basics
@@ -21,8 +27,7 @@ Selection of GCP Workshops
 - Google Compute command-line tool
   - [Install Google Cloud SDK (gcloud)](https://cloud.google.com/sdk/docs/downloads-versioned-archives) 
 - Create an instance
-  - Create instance using the console
-  - Create instance using gcloud
+  - [Create instance using the console/gcloud](https://codelabs.developers.google.com/codelabs/cloud-create-a-vm/index.html?index=..%2F..index#0)
 - Deploy container
   - Deploy a container using the console
   - Deploy a container using gcloud
@@ -31,14 +36,16 @@ Selection of GCP Workshops
 
 ## GCP's network infrastructure (regions, zones)
 
+- [GCP Regions and Network](https://cloud.google.com/about/locations/?tab=regions)
+- [Detailed network Infrastructure](https://peering.google.com/#/infrastructure)
 - VPC
   - Create a VPC
 - Firewall
-  - Deploy a webserver an open it to the world
+  - [Deploy a webserver an open it to the world](https://codelabs.developers.google.com/codelabs/cloud-compute-engine/index.html?index=..%2F..index#0)
 - Network Tags
   - Create a network tag for 8080 ports
 - Load Balancer
-  - 
+  -  [Create a webserver group and load balancer](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gce/index.html?index=..%2F..index#0)
 
 
 ## GKE/K8S foundation
@@ -53,7 +60,7 @@ Selection of GCP Workshops
 - Troubleshooting Tactics
 - [Tips and tricks for working with GKE](tips.md)
 
-
+# Day 2
 
 ## GKE deep dive
 - Interface Capabilities (WebUI, CLI, API)
