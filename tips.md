@@ -5,3 +5,4 @@
 * [kubectx](https://github.com/ahmetb/kubectx) - switch between clusters on kubectl
 * [kubens](https://github.com/ahmetb/kubectx) - switch between namespaces on kubectl
 * [stern](https://github.com/wercker/stern) - Multi pod and container log tailing
+* [velero](https://velero.io/) - Backup your cluster (workloads/config/secrets)
