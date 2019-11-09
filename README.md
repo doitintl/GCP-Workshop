@@ -8,9 +8,11 @@ Selection of GCP Workshops
   - [Setup Account](https://codelabs.developers.google.com/codelabs/gcp-aws-accounts-and-billing-v2/index.html?index=..%2F..index#0)
 - Organization  
   - [Resource Hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy#resource-hierarchy-detail)
-  - https://cloud.google.com/resource-manager/docs/creating-managing-organization
   - Folders
+    - [Create Folder](https://cloud.google.com/resource-manager/docs/creating-managing-folders#creating-folders)
   - Projects
+    - [Create project](https://cloud.google.com/resource-manager/docs/creating-managing-folders#creating_a_project_in_a_folder)
+    
 
 ## IAM
 
@@ -54,16 +56,23 @@ Selection of GCP Workshops
   - Create a cluster from a template
 - GKE Architecture Review
   - Zonal / Multizone /Regional
-  - Create custom node pools
+
 - Storage and Networking Concepts
   - VPC Native
-  - 
+  - Private Cluster
 - GKE Maintenance
   - Upgrades
   - Repair
-  - Cluster
+  - Cluster 
+  - Create custom node pools
 - Real-time Monitoring and Reporting
 - Troubleshooting Tactics
+  - Troubleshooting cluster
+    - Stackdriver Logs
+    - [Node troubleshooting (toolbox)](https://cloud.google.com/kubernetes-engine/docs/troubleshooting#ConnectivityIssues)
+    - [Serial Outout](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output#viewing_serial_port_output)
+  - Troubleshooting applications
+    - Stackdriver logs
 - Resource and Security Management
 
 - [Tips and tricks for working with GKE](tips.md)
@@ -80,7 +89,7 @@ Selection of GCP Workshops
   - [Continuous Deployment with Cloud Build](https://codelabs.developers.google.com/codelabs/cloud-builder-gke-continuous-deploy/index.html?index=..%2F..index#0)
 - Scaling Applications
 - Troubleshooting Application Deployments
-- Working with Pub/Sub 
+- [Working with Pub/Sub](https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform) 
 - Working with Cloud SQL
   - [Connecting to CloudSQL](https://codelabs.developers.google.com/codelabs/connecting-to-cloud-sql/index.html?index=..%2F..index#0) 
 - Notes about Firestore / Spanner
