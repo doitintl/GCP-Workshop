@@ -221,3 +221,73 @@ service "nginx" deleted
 - Viewing container logs in Stackdriver Logging
 - Viewing metrics in Stackdriver Monitoring
 - Viewing metrics in the Workloads page on the Kubernetes Engine console
+
+
+## Scaling 
+
+Google Kubernetes Engine includes the ability to scale the cluster based on scheduled workloads. Kubernetes Engine's cluster autoscaler automatically resizes clusters based on the demands of the workloads you want to run.
+
+Let us simulate some additional load to our web application by increasing the number of replicas:
+
+```
+$ kubectl scale deployment hello-web --replicas=20
+```
+
+deployment "hello-web" scaled
+When you use kubectl run, each pod will request a default of "100 milliCPUs", or one tenth of one CPU.
+
+Each node has a maximum capacity for each of the resource types (the amount of CPU and memory) it can provide for Pods. The scheduler ensures that, for each resource type, the sum of the resource requests of the scheduled Containers is less than the capacity of the node.
+
+A one-core machine like an n1-standard-1 has 1000 milliCPUs, with some reserved for running system pods. You can see how much resource your node has for running pods by looking at the "Allocatable" section of kubectl describe node:
+
+Allocatable:
+ cpu:     940m
+ memory:  2709028Ki
+ pods:    110
+
+Even with our larger machine, this is more work than we have space in our cluster to handle:
+
+```
+$ kubectl get pods
+```
+
+We can see that there are many pods that are stuck with status of *"Pending"*. This means that Kubernetes has not yet been able to schedule that pod to a node.
+
+Copy the name of one of the pods marked Pending, and look at its events with kubectl describe. You should see a message like the following:
+
+```
+$ kubectl describe pod hello-web-967542450-wx1m5
+<...>
+Events:
+  Message
+  -------
+  FailedScheduling        No nodes are available that match all of the following predicates:: Insufficient cpu (3).
+  
+```
+
+The scheduler was unable to assign this pod to a node because there is not sufficient CPU space left in the cluster. We can add nodes to the cluster in order to make have enough resources for all of the pods in our Deployment.
+
+Cluster Autoscaler can be enabled when creating a cluster, or you can enable it by updating an existing node pool. We will enable cluster autoscaler on our new node pool.
+
+```
+$ gcloud container clusters update gke-workshop --enable-autoscaling \
+      --min-nodes=0 --max-nodes=5 --node-pool=new-pool
+```
+
+Enabling Cluster Autoscaler may take a few minutes, as it requires the Kubernetes master to restart. During this time, kubectl commands may not complete successfully.
+
+Once autoscaling is enabled, Kubernetes Engine will automatically add new nodes to your cluster if you have created new Pods that don't have enough capacity to run; conversely, if a node in your cluster is underutilized, Kubernetes Engine can scale down the cluster by deleting the node.
+
+After the command above completes, we can see that the autoscaler has noticed that there are pods in Pending, and creates new nodes to give them somewhere to go. After a few minutes, you will see a new node has been created, and all the pods are now Running. Hit Ctrl-C when you are done:
+
+```
+$ watch kubectl get nodes,pods
+```
+
+### What we've covered
+- Scaling up Deployments
+- The Pending state
+- Adding the Cluster Autoscaler to a node pool
+
+
+
