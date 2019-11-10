@@ -217,3 +217,7 @@ deployment "nginx" deleted
 service "nginx" deleted
 ```
 
+### What we've covered
+- Viewing container logs in Stackdriver Logging
+- Viewing metrics in Stackdriver Monitoring
+- Viewing metrics in the Workloads page on the Kubernetes Engine console
