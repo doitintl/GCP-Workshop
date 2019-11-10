@@ -47,7 +47,9 @@ Selection of GCP Workshops
 - Network Tags
   - Create a network tag for 8080 ports
 - Load Balancer
-  -  [Create a webserver group and load balancer](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gce/index.html?index=..%2F..index#0)
+  - [Summary of GCP Load Balancers] (https://cloud.google.com/load-balancing/docs/choosing-load-balancer#summary_of_cloud_load_balancers)
+  - [Choosing a load balancer](https://cloud.google.com/load-balancing/images/choose-lb.svg)
+  - [Create a webserver group and load balancer](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gce/index.html?index=..%2F..index#0)
 
 
 ## GKE/K8S foundation
@@ -59,20 +61,21 @@ Selection of GCP Workshops
 
 - Storage and Networking Concepts
   - VPC Native
+  - Master Authorized Networks
   - Private Cluster
+  
 - GKE Maintenance
   - Upgrades
   - Repair
   - Cluster 
-  - Create custom node pools
+  
 - Real-time Monitoring and Reporting
 - Troubleshooting Tactics
   - Troubleshooting cluster
     - Stackdriver Logs
     - [Node troubleshooting (toolbox)](https://cloud.google.com/kubernetes-engine/docs/troubleshooting#ConnectivityIssues)
     - [Serial Outout](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output#viewing_serial_port_output)
-  - Troubleshooting applications
-    - Stackdriver logs
+
 - Resource and Security Management
 
 - [Tips and tricks for working with GKE](tips.md)
@@ -84,10 +87,18 @@ Selection of GCP Workshops
 
 ## GKE deep dive
 - Interface Capabilities (WebUI, CLI, API)
+- Troubleshooting applications
+  - Stackdriver logs
+- Scaling Applications  
+  - Scaling deployments
+  - Cluster auto scaler
+  - Preemptible VMs/Nodes
+  - NodeSelector
+  
+  
 - Build and Deployment Capabilities
 - Continuous Integration/Deployment Capabilities
   - [Continuous Deployment with Cloud Build](https://codelabs.developers.google.com/codelabs/cloud-builder-gke-continuous-deploy/index.html?index=..%2F..index#0)
-- Scaling Applications
 - Troubleshooting Application Deployments
 - [Working with Pub/Sub](https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform) 
 - Working with Cloud SQL
