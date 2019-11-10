@@ -69,7 +69,6 @@ Selection of GCP Workshops
   - Repair
   - Cluster 
   
-- Real-time Monitoring and Reporting
 - Troubleshooting Tactics
   - Troubleshooting cluster
     - Stackdriver Logs
@@ -86,6 +85,9 @@ Selection of GCP Workshops
 # Day 2
 
 ## GKE deep dive
+
+[Advanced GKE](Advanced-gke.md)
+
 - Interface Capabilities (WebUI, CLI, API)
 - Troubleshooting applications
   - Stackdriver logs
@@ -99,7 +101,6 @@ Selection of GCP Workshops
 - Build and Deployment Capabilities
 - Continuous Integration/Deployment Capabilities
   - [Continuous Deployment with Cloud Build](https://codelabs.developers.google.com/codelabs/cloud-builder-gke-continuous-deploy/index.html?index=..%2F..index#0)
-- Troubleshooting Application Deployments
 - [Working with Pub/Sub](https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform) 
 - Working with Cloud SQL
   - [Connecting to CloudSQL](https://codelabs.developers.google.com/codelabs/connecting-to-cloud-sql/index.html?index=..%2F..index#0) 
