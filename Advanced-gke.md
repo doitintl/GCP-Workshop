@@ -161,4 +161,59 @@ Deleting node pool default-pool...done.
 Deleted [https://container.googleapis.com/v1/projects/codelab/zones/europe-west1-d/clusters/gke-workshop/nodePools/default-pool].
 ```
 
+### What we've covered
+- Creating node pools
+- Cordoning and draining nodes
+- Migrating the cluster from one machine type to another
+- Creating multiple node pools with different configurations
+- Deleting node pools
+
+## Logs
+
+### Examining Container Logs
+
+First let's create a workload in the cluster to generate some logs. We will create an nginx Deployment and corresponding Service in order to emit some logs.
+
+```
+$ kubectl run nginx --image=nginx --expose --port=80 --service-overrides='{"spec":{"type":"LoadBalancer"}}'
+
+service "nginx" created
+deployment "nginx" created
+```
+
+Next check for the public IP of our nginx Service. When the IP address is returned you can hit Ctrl-C to exit.
+
+It may take a couple minutes for the public IP address to be set.
+
+```bash
+$ watch kubectl get svc nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+
+123.123.123.123
+
+```
+
+In your terminal run the following to generate load on the nginx Pod. Enter the IP address of your service instead of the IP address below.
+
+```bash
+$ INGRESS_IP=kubectl get svc nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+$ while true; do curl -s $INGRESS_IP > /dev/null; done
+```
+
+This will run in a never ending loop sending requests to our nginx Pod. You should now be able to view the logs for the Pod. View the Stackdriver Logs by selecting Logging > Logs from the menu in the Google Cloud Platform console.
+
+
+Next, let's view the metrics for our pod in Stackdriver Monitoring. Navigate to Monitoring in the menu for the Google Cloud Platform Console. A new tab should be opened for Stackdriver Monitoring. Within Stackdriver Monitoring navigate to Resources > Kubernetes Engine. You should see a list of Pods. One of the pods should look like nginx-XXXXXXXXX-YYYYY. Click on that pod in the list.
+
+[!] It may take a couple minutes before the Pod shows up in Stackdriver Monitoring
+
+
+
+Let's delete this deployment and service:
+
+```
+$ kubectl delete deployment,service nginx
+
+deployment "nginx" deleted
+service "nginx" deleted
+```
 
