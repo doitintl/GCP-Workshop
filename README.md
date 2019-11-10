@@ -47,7 +47,7 @@ Selection of GCP Workshops
 - Network Tags
   - Create a network tag for 8080 ports
 - Load Balancer
-  - [Summary of GCP Load Balancers] (https://cloud.google.com/load-balancing/docs/choosing-load-balancer#summary_of_cloud_load_balancers)
+  - [Summary of GCP Load Balancers](https://cloud.google.com/load-balancing/docs/choosing-load-balancer#summary_of_cloud_load_balancers)
   - [Choosing a load balancer](https://cloud.google.com/load-balancing/images/choose-lb.svg)
   - [Create a webserver group and load balancer](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gce/index.html?index=..%2F..index#0)
 
