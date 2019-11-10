@@ -1,5 +1,7 @@
 ## Useful tools
 
+* kubectl auto complete - ```source <(kubectl completion bash)```
+
 * [kube-ps1](https://github.com/jonmosco/kube-ps1) - Kubernetes prompt helper for bash and zsh.
 * [Kubectl Aliases](https://github.com/ahmetb/kubectl-aliases) - Aliases for Kubectl
 * [kubectx](https://github.com/ahmetb/kubectx) - switch between clusters on kubectl
