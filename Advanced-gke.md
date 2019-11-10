@@ -1,12 +1,21 @@
- When you create a cluster, gcloud adds a context to your kubectl configuration file (~/.kube/config). It then sets it as the current context, to let you operate on this cluster immediately.
+# Advanced GKE
 
+
+## Creating a basic cluster
+
+```bash
+$ gcloud beta container clusters create gke-workshop
 ```
+
+When you create a cluster, gcloud adds a context to your kubectl configuration file (~/.kube/config). It then sets it as the current context, to let you operate on this cluster immediately.
+
+```bash
 $ kubectl config current-context
 ```
 
 To test it, try a kubectl command line:
 
-```
+```bash
 $ kubectl get nodes
 ```
 
@@ -48,7 +57,7 @@ A common method of moving a cluster to larger nodes is to add a new node pool, m
 
 Let's add a second node pool, and migrate our workload over to it. This time we will use the larger n1-standard-2 machine type, but only create one instance.
 
-```
+```bash
 $ gcloud container node-pools create new-pool --cluster <our_cluster_name> \
     --machine-type n1-standard-2 --num-nodes 3
 Creating node pool new-pool...done.                                                                                                                                   
@@ -290,4 +299,81 @@ $ watch kubectl get nodes,pods
 - Adding the Cluster Autoscaler to a node pool
 
 
+## NodeSelector / Taints / Preemptibles
 
+Preemptible VMs are Google Compute Engine VM instances that last a maximum of 24 hours and provide no availability guarantees. Preemptible VMs are priced substantially lower than standard Compute Engine VMs and offer the same machine types and options.
+
+If your workload can handle nodes disappearing, using Preemptible VMs with the Cluster Autoscaler lets you run work at a lower cost. To specify that you want to use Preemptible VMs you simply use the --preemptible flag when you create the node pool. But if you're using Preemptible VMs to cut costs, then you don't need them sitting around idle. So let's create a node pool of Preemptible VMs that starts with zero nodes, and autoscales as needed.
+
+Hold on though: before we create it, how do we schedule work on the Preemptible VMs? These would be a special set of nodes for a special set of work - probably low priority or batch work. For that we'll use a combination of a NodeSelector and taints/tolerations
+
+```bash
+$ gcloud beta container node-pools create preemptible-pool \
+    --cluster gke-workshop --preemptible --num-nodes 0 \
+    --enable-autoscaling --min-nodes 0 --max-nodes 5 \
+    --node-taints=pod=preemptible:PreferNoSchedule
+
+Creating node pool preemptible-pool...done.
+Created [https://container.googleapis.com/v1/projects/codelab/zones/europe-west1-d/clusters/gke-workshop/nodePools/preemptible-pool].
+NAME               MACHINE_TYPE   DISK_SIZE_GB  NODE_VERSION
+preemptible-pool   n1-standard-1  100           1.9.6-gke.0
+
+$ kubectl get nodes
+```
+
+
+We now have two node pools, but the new "preemptible" pool is autoscaled and is sized to zero initially so we only see the three nodes from the autoscaled node pool that we created in the previous section.
+
+Usually as far as Kubernetes is concerned, all nodes are valid places to schedule pods. We may prefer to reserve the preemptible pool for workloads that are explicitly marked as suiting preemption — workloads which can be replaced if they die, versus those that generally expect their nodes to be long-lived.
+
+To direct the scheduler to schedule pods onto the nodes in the preemptible pool we must first mark the new nodes with a special label called a taint. This makes the scheduler avoid using it for certain Pods.
+
+When our application autoscales, the Kubernetes scheduler will prefer nodes that do not have the taint. This is as opposed to requiring that new workloads run on nodes without a taint. This is an easy way to allow us to run pods from system DaemonSets like Calico or fluentd without extra work.
+
+
+We can then mark pods that we want to run on the preemptible nodes with a matching toleration, which says they are OK to be assigned to nodes with that taint.
+
+Let's create a new workload that's designed to run on preemptible nodes and nowhere else.
+
+```
+$ cat <<EOF | kubectl apply -f -
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: hello-web
+  name: hello-preempt
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      run: hello-web
+  template:
+    metadata:
+      labels:
+        run: hello-web
+    spec:
+      containers:
+      - image: gcr.io/google-samples/hello-app:1.0
+        name: hello-web
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: "50m"
+      tolerations:
+      - key: pod
+        operator: Equal
+        value: preemptible
+        effect: PreferNoSchedule
+      nodeSelector:
+        cloud.google.com/gke-preemptible: "true"
+EOF
+
+deployment "hello-preempt" created
+```
+
+```
+$ watch kubectl get nodes,pods -o wide
+```
