@@ -43,7 +43,7 @@ Selection of GCP Workshops
 - VPC
   - Create a VPC
 - Firewall
-  - [Deploy a webserver an open it to the world](https://codelabs.developers.google.com/codelabs/cloud-compute-engine/index.html?index=..%2F..index#0)
+  - [Deploy a webserver and open it to the world](https://codelabs.developers.google.com/codelabs/cloud-compute-engine/index.html?index=..%2F..index#0)
 - Network Tags
   - Create a network tag for 8080 ports
 - Load Balancer
