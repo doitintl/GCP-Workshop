@@ -3,7 +3,7 @@ Selection of GCP Workshops
 
 # Day 1 
 
-## Projects Folders and organizations 
+## Projects Folders and Organizations 
 - Billing Acccount
   - [Setup Account](https://codelabs.developers.google.com/codelabs/gcp-aws-accounts-and-billing-v2/index.html?index=..%2F..index#0)
 - Organization  
