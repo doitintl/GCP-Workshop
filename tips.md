@@ -8,3 +8,5 @@
 * [kubens](https://github.com/ahmetb/kubectx) - switch between namespaces on kubectl
 * [stern](https://github.com/wercker/stern) - Multi pod and container log tailing
 * [velero](https://velero.io/) - Backup your cluster (workloads/config/secrets)
+* kubectl api-resources - get all resources and their abbreviations 
+* [krew](https://github.com/kubernetes-sigs/krew) - package manager for kubectl
