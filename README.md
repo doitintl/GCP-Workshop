@@ -73,7 +73,7 @@ Selection of GCP Workshops
   - Troubleshooting cluster
     - Stackdriver Logs
     - [Node troubleshooting (toolbox)](https://cloud.google.com/kubernetes-engine/docs/troubleshooting#ConnectivityIssues)
-    - [Serial Outout](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output#viewing_serial_port_output)
+    - [Serial Output](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output#viewing_serial_port_output)
 
 - Resource and Security Management
 
